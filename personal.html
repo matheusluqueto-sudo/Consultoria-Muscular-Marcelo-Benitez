@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Marcelo Benitez | Personal Trainer</title>
+        <style>
+        /* --- Configurações Gerais --- */
+        :root {
+            --primary-color: #00ff88; /* Verde Neon */
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #ffffff;
+            --secondary-text: #b3b3b3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #333;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a {
+            margin-left: 20px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* Fundo escurecido para leitura do texto */
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            padding-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero span { color: var(--primary-color); }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #000;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        /* --- Sections Gerais --- */
+        .section { padding: 80px 0; }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .section-title p { color: var(--secondary-text); }
+
+        /* --- Sobre --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        .about-text p { margin-bottom: 15px; color: var(--secondary-text); }
+
+        .about-img {
+            width: 100%;
+            height: 400px;
+            background-color: #333;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            border: 2px dashed var(--primary-color);
+            overflow: hidden;
+        }
+        
+        .about-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- RESULTADOS (ANTES E DEPOIS) - NOVO --- */
+        .results-section {
+            background-color: #151515; /* Ligeiramente diferente do fundo */
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .result-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            border-color: #333;
+        }
+
+        .comparison-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .img-wrapper {
+            position: relative;
+            flex: 1;
+            height: 250px; /* Altura fixa para alinhar */
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .img-label {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .label-before {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #ccc;
+        }
+
+        .label-after {
+            background-color: var(--primary-color);
+            color: #000;
+        }
+
+        .client-info h4 { font-size: 1.2rem; color: #fff; margin-bottom: 5px; }
+        .client-info p { font-size: 0.9rem; color: var(--primary-color); }
+        .client-info span { display: block; font-size: 0.9rem; color: #777; margin-top: 5px; font-style: italic; }
+
+        /* --- Planos --- */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .plan-card {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+
+        .plan-name { font-size: 1.5rem; margin-bottom: 10px; font-weight: bold; }
+        
+        .plan-price {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .plan-price span { font-size: 1rem; color: #fff; font-weight: normal; }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            color: var(--secondary-text);
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .btn-outline {
+            display: block;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-outline:hover { background-color: var(--primary-color); color: #000; }
+
+        /* --- Footer --- */
+        /* --- Footer (Rodapé) --- */
+footer {
+    padding: 60px 0;          /* Espaçamento interno (cima e baixo) */
+    text-align: center;       /* Centraliza todo o texto e elementos */
+    border-top: 1px solid #333; /* Linha sutil separando do resto do site */
+    color: #b3b3b3;           /* Cor do texto secundário (cinza claro) */
+    margin-top: 50px;         /* Espaço para afastar da seção anterior */
+    background-color: #0f0f0f; /* Fundo levemente mais escuro que o resto */
+}
+
+/* Configuração da Logo no Rodapé */
+.footer-logo {
+    max-width: 180px;         /* Tamanho máximo da logo */
+    width: 100%;              /* Garante que não estoure em telas pequenas */
+    height: auto;             /* Mantém a proporção da imagem */
+    margin: 0 auto 20px auto; /* Centraliza a imagem e dá espaço embaixo */
+    display: block;           /* Necessário para o margin auto funcionar */
+}
+
+/* Ajustes opcionais para os textos do rodapé */
+footer h3 {
+    color: #fff;              /* Nome do Marcelo em branco */
+    margin-bottom: 5px;
+}
+
+footer p {
+    opacity: 0.8;
+}
+
+        /* --- Responsividade --- */
+        @media (max-width: 768px) {
+            .about-content { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } 
+            .comparison-container { height: auto; }
+            .img-wrapper { height: 200px; }
+        }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="logo">Marcelo Benitez</div>
+                    <div class="nav-links">
+                        <a href="#sobre">Sobre</a>
+                        <a href="#resultados">Resultados</a>
+                        <a href="#planos">Consultoria</a>
+                        <a href="#contato">Contato</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <section class="hero">
+            <div class="container">
+                <h1>Transforme seu corpo com
+                    <br>
+                    <span>Experiência e Técnica</span>
+                </h1>
+                <p>Consultoria fitness personalizada para quem busca resultados reais. Mais de 10 anos de experiência transformando vidas em Curitiba.</p>
+                <a href="#planos" class="btn">Começar Agora</a>
+            </div>
+        </section>
+        <section id="sobre" class="section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-img">
+                        <img src="marcelo campeao.png" alt="Marcelo Benitez">
+                    </div>
+                    <div class="about-text">
+                        <h2>Quem é Marcelo Benitez?</h2>
+                        <p>Com 35 anos e mais de uma década atuando no mercado fitness de Curitiba, dedico minha vida a ajudar pessoas a alcançarem sua melhor versão.</p>
+                        <p>Atuo diariamente na SmartFit com alunos presenciais e ofereço consultorias premium personalizadas. Minha metodologia foca não apenas no exercício, mas na evolução física constante.</p>
+                        <p>
+                            <strong>Minha missão:</strong> Fazer você atingir suas metas com segurança, técnica e eficiência.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="resultados" class="section results-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Resultados Reais</h2>
+                    <p>Veja a transformação de quem confiou no meu método.</p>
+                </div>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="comparison-container">
+                            <div class="img-wrapper">
+                                <img src="evolução 2.png" alt="Antes">
+                            </div>
+                        </div>
+                        <div class="client-info">
+                            <h4>Carlos Eduardo</h4>
+                            <p>Hipertrofia e Definição</p>
+                            <span>"Em 3 meses de consultoria online tive mais resultados que em 1 ano treinando sozinho."</span>
+                        </div>
+                    </div>
+                    <div class="result-card">
+                        <div class="comparison-container">
+                            <div class="img-wrapper">
+                                <img src="evolução 1.png" alt="Antes">
+                            </div>
+                        </div>
+                        <div class="client-info">
+                            <h4>Mariana Silva</h4>
+                            <p>-12kg em 5 meses</p>
+                            <span>"O acompanhamento presencial fez toda diferença na minha postura e motivação."</span>
+                        </div>
+                    </div>
+                    <div class="result-card">
+                        <div class="comparison-container">
+                            <div class="img-wrapper">
+                                <img src="evolução 4.png" alt="Depois">
+                            </div>
+                        </div>
+                        <div class="client-info">
+                            <h4>Rafael Costa</h4>
+                            <p>Ganho de Massa Muscular</p>
+                            <span>"A consultoria online se encaixou perfeitamente na minha rotina corrida."</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="planos" class="section plans">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Escolha sua Consultoria</h2>
+                    <p>Investimento na sua saúde e estética.</p>
+                </div>
+                <div class="plans-grid">
+                    <div class="plan-card">
+                        <h3 class="plan-name">Consultoria Online</h3>
+                        <div class="plan-price">R$ 100
+                            <span>/mês</span>
+                        </div>
+                        <p style="margin-bottom: 20px; color: #999;">Liberdade para treinar onde quiser</p>
+                        <ul class="plan-features">
+                            <li>Treinos via WhatsApp</li>
+                            <li>Periodização personalizada</li>
+                            <li>Ajustes semanais</li>
+                            <li>Suporte direto comigo</li>
+                            <li>Correção de vídeos</li>
+                        </ul>
+                        <a href="https://wa.me/5541999999999?text=Olá Marcelo, quero a consultoria Online!" class="btn-outline" target="_blank">
+                            Quero este plano
+                        </a>
+                    </div>
+                    <div class="plan-card" style="border-color: var(--primary-color); box-shadow: 0 0 15px rgba(0, 255, 136, 0.1);">
+                        <h3 class="plan-name">Consultoria Presencial</h3>
+                        <div class="plan-price">R$ 50
+                            <span>/aula</span>
+                        </div>
+                        <p style="margin-bottom: 20px; color: #999;">Acompanhamento exclusivo lado a lado</p>
+                        <ul class="plan-features">
+                            <li>Treino presencial (SmartFit)</li>
+                            <li>Correção em tempo real</li>
+                            <li>Plano alimentar básico</li>
+                            <li>Suporte e dicas</li>
+                            <li>Motivação máxima</li>
+                        </ul>
+                        <a href="https://wa.me/5541999999999?text=Olá Marcelo, quero agendar uma aula presencial!" class="btn" target="_blank">
+                            Agendar Aula
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer id="contato">
+            <div class="container">
+                <h3>Marcelo Benitez Personal Trainer</h3>
+                <p>Curitiba - PR | Atendendo na SmartFit e Online</p>
+                <br>
+                <a
+                    href="https://wa.me/5541999999999"
+                    target="_blank"
+                    class="btn"
+                    style="padding: 10px 20px; font-size: 0.9rem;"
+                >
+                    Fale Comigo
+                </a>
+                <br>
+                <br>
+                <p style="font-size: 0.8rem; opacity: 0.6;">&copy; 2024 Todos os direitos reservados.</p>
+                <img src="MARCELO-LOGO.png" alt="Logo Marcelo Benitez" class="footer-logo">
+            </div>
+        </footer>
+    </body>
+</html>
